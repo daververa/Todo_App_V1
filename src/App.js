@@ -5,7 +5,7 @@ import { TodoCounter } from './Components/TodoCounter';
 import { TodoItem } from './Components/TodoItem';
 import { TodoList } from './Components/TodoList';
 import { TodoSearch } from './Components/TodoSearch';
-
+import { useLocalStorage } from './Hooks/useLocalStorage';
 
 // const defaultTodos = [
 //   { text: "Cortar cebolla", completed: true },
@@ -20,29 +20,6 @@ import { TodoSearch } from './Components/TodoSearch';
 // localStorage.setItem('TODOS_V1', JSON.stringify(defaultTodos))
 // localStorage.removeItem('TODOS_V1')
 
-function useLocalStorage(itemName, initialValue) {
-
-  const localStorageItem = localStorage.getItem(itemName);
-
-  let parsedItem;
-
-  if (!localStorageItem) {
-    localStorage.setItem(itemName, JSON.stringify([initialValue]));
-    parsedItem = initialValue;
-  } else {
-    parsedItem = JSON.parse(localStorageItem);
-  };
-
-  const [item, setItem] = React.useState(parsedItem);
-
-  const saveItem = (newItem) => {
-    localStorage.setItem(itemName, JSON.stringify(newItem));
-    setItem(newItem);
-  };
-
-  return [item, saveItem];
-
-}
 
 function App() {
 
